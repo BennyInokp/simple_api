@@ -6,19 +6,20 @@ const path = require("path");
 app.use(express.json())
 
 const result = []
-app. get("",(( request, response, next) => {
-     const dir = path.join(_dirname + "/public/index.html")
-     return response.sendFile(dir)
-}));
+app.get("/getAll", function (req, res) {
+    res.send({result})
+});
 
-app.get("/getAll",((request, response) => {
-     response.json({result})
-}));
+app. get("", function (req, res) {
+     const dir = path.join(__dirname + "/public/index.html")
+     return response.sendFile(dir);
+});
 
-app.post ("/addition", function(req,res){
+
+app.post ("/addition", function(req, res){
     const{value1, value2} = req.body;
     const answer = value1 + value2
-    const message = 'the sum of ${value1} and ${value2} is ${answer}'
+    const message = `the sum of ${value1} and ${value2} is ${answer}`
     result.push(message)
     res.json({message})
 })
@@ -26,21 +27,26 @@ app.post ("/addition", function(req,res){
 app.post ("/division", function(req,res){
     const {value1, value2} = req.body;
     const answer = value1 / value2
-    res.json({"message":`the sum of ${value1} and ${value2} is ${answer}`})
-    
+    message= `the sum of ${value1} and ${value2} is ${answer}`
+    result.push(message)
+    res.json({message})   
 })
 
 app.post ("/multiplication", function(req,res){
     const {value1, value2} = req.body;
     const answer = value1 * value2
-    res.json({"message":`the sum of ${value1} and ${value2} is ${answer}`})
+    message = `the sum of ${value1} and ${value2} is ${answer}`
+    result.push(message)
+    res.json({message})
     
 })
 
 app.post ("/substraction", function(req,res){
     const {value1, value2} = req.body;
     const answer = value1 - value2
-    res.json({"message":`the sum of ${value1} and ${value2} is ${answer}`})
+    message = `the sum of ${value1} and ${value2} is ${answer}`
+    result.push(message)
+    res.json({message})
     
 })
 
